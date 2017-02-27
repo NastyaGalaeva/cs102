@@ -1,0 +1,49 @@
+import random
+
+
+def read_sudoku(filename):  # Прочитать Судоку из указанного файла
+    digits = [c for c in open(filename).read() if c in '123456789.']
+    grid = group(digits, 9)
+    return grid
+
+
+def display(values):  # Вывод Судоку
+    width = 2
+    line = '+'.join(['-' * (width * 3)] * 3)
+    for row in range(9):
+        print(''.join(values[row][col].center(width) + ('|' if str(col) in '25' else '') for col in range(9)))
+        if str(row) in '25':
+            print(line)
+    print()
+
+
+def group(values, n):  # Сгруппировать значения values в список, состоящий из списков по n элементов
+    a_list = []
+    i = 0
+    while i < n:
+        a_list.append(values[slice(i * n, n * (i + 1))])
+        i += 1
+    return a_list
+
+
+def generate_sudoku(N):
+    grid = read_sudoku('puzzle2.txt')
+    for i in range(0, 9):
+        a = random.randint(0, 2)
+        area = a * 3
+        line1 = random.randint(area, area + 2)
+        line2 = random.randint(area, area + 2)
+        for k in range(0, 9):
+            [grid[k][line1], grid[k][line2]] = grid[k][line2], grid[k][line1]
+
+    for i in range(0, 81 - N):
+        row = (random.randint(0, 8))
+        col = (random.randint(0, 8))
+        while grid[row][col] == ".":
+            row = (random.randint(0, 8))
+            col = (random.randint(0, 8))
+        grid[row][col] = "."
+    display(grid)
+
+
+generate_sudoku(40)
