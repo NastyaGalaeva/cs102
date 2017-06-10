@@ -1,0 +1,30 @@
+
+Kv file tictactoe.kv:
+
+    <TicTacToeGrid>:
+        cols: 3  # Number of columns
+
+    <GridEntry>:
+        font_size: self.height
+
+     <Interface>:
+         orientation: 'vertical'
+ 
+          # We add child widgets in kv by simply writing another
+          # layer in the widget tree, nested as deep as we like
+         AnchorLayout:
+             TicTacToeGrid:
+                 id: board
+                 size: min(self.parent.size), min(self.parent.size)
+                 size_hint: None, None
+        Label:
+            size_hint_y: None
+            height: sp(40)
+            text: 
+                '{} to play'.format(
+                {1: 'O', -1: 'X'}[board.current_player])
+        Button:
+            size_hint_y: None
+            height: sp(40)
+            text: 'reset'
+            on_press: board.reset()
