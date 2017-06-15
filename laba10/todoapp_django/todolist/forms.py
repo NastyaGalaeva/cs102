@@ -8,7 +8,7 @@ class TodolistCreateForm(forms.Form):
 class TodolistUpdateForm(forms.Form):
     name = forms.CharField(label='Todo list\'s name', max_length=50)
 
-class LoginForm(forms.Form):
+class LoginForm(forms.Form): #Из чего будет состоять 
     username = forms.CharField(label='username', max_length=50)
     password = forms.CharField(widget=forms.PasswordInput())
 
