@@ -20,7 +20,7 @@ from todolist import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^todolists/', include('todolist.urls')),
-    url(r'^logout/', views.LogoutView.as_view(), name='logout'),
+    url(r'^logout/', views.LogoutView.as_view(), name='logout'), #Ссылки для входа, выхода и регистрации 
     url(r'^login/$', views.LoginView.as_view(), name='login'),
     url(r'^register/$', views.RegisterView.as_view(), name='register'),
 
