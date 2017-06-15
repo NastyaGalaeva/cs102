@@ -8,9 +8,9 @@ from .services import create_auth_header, convert_from_json_to_obj
 from .services import generate_confirmation_token
 # Create your views here.
 
-def index(request):
+def index(request): #Как будет выглядеть главная страница 
     headers = create_auth_header(request.session)
-    r = requests.get('http://127.0.0.1:8080/todolists/', headers=headers)
+    r = requests.get('http://127.0.0.1:8080/todolists/', headers=headers) #Обращаемся на сервер 
     todolists = r.json()
     return render(request, 'index.html', {'todolists': todolists, 'session': request.session})
 
